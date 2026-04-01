@@ -35,6 +35,22 @@ class CareerController {
             res.status(401).json(Responses.errorResponse(error))
         }
     }
+    static async getIndustries(req, res) {
+        try {
+            const result = await CareerService.getIndustries(req);
+            const {
+                status, error, message, data
+            } = result;
+            if (status) {
+                res.status(200).json(Responses.successResponse(message, data));
+            } else {
+                res.status(error.status || 401).json(Responses.errorResponse(error));
+            }
+        }
+        catch (error) {
+            res.status(401).json(Responses.errorResponse(error))
+        }
+    }
 }
 
 module.exports = CareerController;

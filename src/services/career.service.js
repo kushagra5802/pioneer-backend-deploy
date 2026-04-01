@@ -152,6 +152,41 @@ class CareerService {
         }
     }
 
+    static async getIndustries() {
+        try {
+
+            /* ----------------------------------
+            1. FETCH UNIQUE INDUSTRIES
+            -----------------------------------*/
+            const industries = await Career.distinct("industry", {
+                isDeleted: false
+            });
+
+            /* ----------------------------------
+            2. OPTIONAL: SORT ALPHABETICALLY
+            -----------------------------------*/
+            industries.sort((a, b) => a.localeCompare(b));
+
+            /* ----------------------------------
+            3. RESPONSE
+            -----------------------------------*/
+            return {
+                status: true,
+                data: industries,
+                message: "Unique industries fetched successfully",
+                error: null
+            };
+
+        } catch (error) {
+            return {
+                status: false,
+                data: null,
+                message: error.message,
+                error
+            };
+        }
+    }
+
 
 }
 

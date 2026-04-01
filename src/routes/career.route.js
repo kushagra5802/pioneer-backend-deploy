@@ -9,5 +9,6 @@ const router = express.Router();
 
 router.post('/',verifyToken,CareerController.createCareer);
 router.get('/',verifyToken,CareerController.getCareer);
+router.get('/industries',verifyToken,CareerController.getIndustries);
 
 module.exports = router;

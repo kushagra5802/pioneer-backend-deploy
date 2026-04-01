@@ -72,6 +72,32 @@ const CareerSchema = new mongoose.Schema(
       type: [String],
       default: []
     },
+    educationPath: {
+      type: String,
+      default: "",
+    },
+
+    /* ----------------------------------
+       NEW FIELDS (FROM EXCEL)
+    -----------------------------------*/
+
+    exposure: { type: [String], default: [] }, // comma separated
+
+    whatYouActuallyDo: { type: [String], default: [] }, // dot separated
+
+    entranceExams: { type: [String], default: [] }, // comma separated
+
+    scholarships: { type: [String], default: [] }, // comma separated
+
+    lateralOptions: { type: [String], default: [] }, // comma separated
+
+    adjacentRoles: { type: [String], default: [] }, // comma separated
+
+    whoShouldNotChoose: {
+      type: String,
+      default: ""
+    },
+
 
     /* ----------------------------------
        META

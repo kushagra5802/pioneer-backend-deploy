@@ -73,7 +73,7 @@ class UniversityService {
         page = 1,
         limit = 50
       } = payload.query;
-
+      console.log("payload.query",payload.query)
       const skip = (Number(page) - 1) * Number(limit);
 
       const query = {
@@ -101,12 +101,16 @@ class UniversityService {
         University.countDocuments(query)
       ]);
 
+      console.log("universities",universities)
+
       return {
         status: true,
         data: universities,
         message: "Universities fetched successfully",
         error: null,
-        total
+        total,
+        currentPage: Number(page),
+        totalPages: Math.ceil(total / Number(limit)) || 1
       };
 
     } catch (error) {

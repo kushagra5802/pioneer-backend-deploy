@@ -23,10 +23,18 @@ class CareerController {
         try {
             const result = await CareerService.getCareer(req);
             const {
-                status, error, message, data
+                status, error, message, data, total, currentPage, totalPages
             } = result;
             if (status) {
-                res.status(200).json(Responses.successResponse(message, data));
+                res.status(200).json({
+                    status: true,
+                    message,
+                    data,
+                    total,
+                    currentPage,
+                    totalPages,
+                    error: null
+                });
             } else {
                 res.status(error.status || 401).json(Responses.errorResponse(error));
             }

@@ -126,7 +126,10 @@ class CareerService {
             4. FETCH DATA
             -----------------------------------*/
             const [careers, total] = await Promise.all([
-            Career.find(query).sort({ createdAt: -1 }),
+            Career.find(query)
+              .sort({ createdAt: -1 })
+              .skip(skip)
+              .limit(Number(limit)),
 
             Career.countDocuments(query)
             ]);
@@ -139,7 +142,9 @@ class CareerService {
             data: careers,
             message: "Careers fetched successfully",
             error: null,
-            total
+            total,
+            currentPage: Number(page),
+            totalPages: Math.ceil(total / Number(limit)) || 1
             };
 
         } catch (error) {

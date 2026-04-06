@@ -25,7 +25,7 @@ async function importUniversities() {
   try {
     /* CONNECT DB */
     await mongoose.connect(MONGO_URI + DB_NAME);
-    console.log("✅ MongoDB Connected");
+    console.log("MongoDB Connected");
 
     /* READ EXCEL */
     const workbook = XLSX.readFile("./university3.xlsx");

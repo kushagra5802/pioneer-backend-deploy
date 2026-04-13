@@ -2,6 +2,21 @@ const Responses = require("../utils/utils.response");
 const StudentExperienceService = require("../services/studentExperience.service");
 
 class StudentExperienceController {
+  static async mediaUpload(req, res) {
+    try {
+      const result = await StudentExperienceService.mediaUpload(req);
+      const { status, error, message, data } = result;
+
+      if (status) {
+        res.status(201).json(Responses.successResponse(message, data));
+      } else {
+        res.status(error.status || 401).json(Responses.errorResponse(error));
+      }
+    } catch (error) {
+      res.status(401).json(Responses.errorResponse(error));
+    }
+  }
+
   static async createContent(req, res) {
     try {
       const result = await StudentExperienceService.createContent(req);

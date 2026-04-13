@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
 
+const StudentExperienceMediaSchema = new mongoose.Schema(
+  {
+    guid: { type: String, default: "" },
+    key: { type: String, default: "" },
+    name: { type: String, default: "" },
+    publicUrl: { type: String, default: "" },
+    mimetype: { type: String, default: "" },
+  },
+  { _id: false }
+);
+
 const StudentExperienceContentSchema = new mongoose.Schema(
   {
     contentScope: {
@@ -31,10 +42,14 @@ const StudentExperienceContentSchema = new mongoose.Schema(
       trim: true,
       index: true,
     },
-    description: {
+    subtitle: {
       type: String,
       default: "",
       trim: true,
+    },
+    description: {
+      type: String,
+      default: "",
     },
     categoryLabel: {
       type: String,
@@ -72,6 +87,10 @@ const StudentExperienceContentSchema = new mongoose.Schema(
       type: String,
       default: "",
       trim: true,
+    },
+    mediaFiles: {
+      type: [StudentExperienceMediaSchema],
+      default: [],
     },
     gradeCategories: {
       type: [String],
